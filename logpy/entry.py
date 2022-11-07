@@ -26,6 +26,7 @@ class Entry:
         Returns the duration of the entry
         :return: duration
         """
+        return self.end_time - self.start_time
 
     def to_pair(self) -> Tuple[str, timedelta]:
         """
