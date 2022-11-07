@@ -3,7 +3,7 @@ from logpy.entry import Entry
 from datetime import datetime
 
 
-class EntryConstructorTestCase(unittest.TestCase):
+class ConstructorTestCase(unittest.TestCase):
     start_time = datetime(2022, 11, 7, 17)
     end_time = datetime(2022, 11, 7, 18)
     category = 'Category'
