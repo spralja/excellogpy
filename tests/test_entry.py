@@ -9,6 +9,7 @@ description = 'Description'
 
 duration = timedelta(0, 1)
 
+pair = (category, duration)
 
 class ConstructorTestCase(unittest.TestCase):
     def test00(self):
@@ -35,3 +36,10 @@ class DurationTestCase(unittest.TestCase):
     def test00(self):
         entry = Entry(start_time, end_time, category)
         self.assertEqual(entry.duration, duration)
+
+
+class ToPairTestCase(unittest.TestCase):
+
+    def test00(self):
+        entry = Entry(start_time, end_time, category)
+        self.assertEqual(entry.to_pair(), pair)
