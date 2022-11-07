@@ -12,7 +12,13 @@ class Entry:
     description: str
 
     def __init__(self, start_time, end_time, category, description=''):
-        pass
+        if end_time <= start_time:
+            raise ValueError("end_time must be greater than start_time")
+
+        self.start_time = start_time
+        self.end_time = end_time
+        self.category = category
+        self.description = description
 
     @property
     def duration(self) -> timedelta:
