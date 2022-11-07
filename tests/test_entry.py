@@ -28,3 +28,10 @@ class ConstructorTestCase(unittest.TestCase):
     def test02(self):
         with self.assertRaises(ValueError):
             entry = Entry(end_time, start_time, category, description)
+
+
+class DurationTestCase(unittest.TestCase):
+
+    def test00(self):
+        entry = Entry(start_time, end_time, category)
+        self.assertEqual(entry.duration, duration)
