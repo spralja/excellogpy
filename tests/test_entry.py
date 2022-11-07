@@ -31,7 +31,7 @@ class ConstructorTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             entry = Entry(end_time, start_time, category)
 
-    def test02(self):
+    def test03(self):
         with self.assertRaises(ValueError):
             entry = Entry(start_time, start_time, category)
 
