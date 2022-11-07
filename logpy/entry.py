@@ -36,3 +36,4 @@ class Entry:
         """
 
         return self.category, self.duration
+
