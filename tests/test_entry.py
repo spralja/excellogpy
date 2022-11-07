@@ -11,6 +11,7 @@ duration = timedelta(0, 1)
 
 pair = (category, duration)
 
+
 class ConstructorTestCase(unittest.TestCase):
     def test00(self):
         entry = Entry(start_time, end_time, category, description)
