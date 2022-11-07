@@ -34,3 +34,5 @@ class Entry:
         Returns a tuple of the form (category, duration)
         :return:
         """
+
+        return self.category, self.duration
