@@ -7,7 +7,7 @@ end_time = datetime(2022, 11, 7, 18)
 category = 'Category'
 description = 'Description'
 
-duration = timedelta(0, 1)
+duration = timedelta(hours=1)
 
 pair = (category, duration)
 
