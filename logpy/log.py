@@ -13,14 +13,6 @@ class Log:
     def __init__(self, name: str):
         pass
 
-    @property
-    def name(self) -> str:
-        """
-        Returns the name of the folder the log was loaded from
-        :return:
-        """
-        pass
-
     def add_entry(self, entry: Entry) -> Self:
         """
         :param entry:
