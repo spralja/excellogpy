@@ -1,6 +1,6 @@
 from .entry import Entry
 
-from typing import List, Self, Optional, Iterator
+from typing import List, Self, Optional, Generator
 
 from pathlib import Path
 from datetime import datetime
@@ -19,7 +19,7 @@ class Log:
         :return: self
         """
 
-    def range(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Iterator:
+    def range(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Generator:
         """
         Returns a range object with entries that end after the start time and begin before the end time in chronological
         order
