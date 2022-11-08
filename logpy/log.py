@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 class Log:
-    path: Path
+    name: str
     entries = List[Entry]
 
     def __init__(self, name: str = ''):
