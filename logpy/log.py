@@ -15,6 +15,7 @@ class Log:
 
     def add_entry(self, *args, **kwargs) -> Entry:
         """
+        Add an Entry object, or pass arguments that are used to create an Entry object
         :param args:
         :param kwargs:
         :return:
