@@ -10,7 +10,7 @@ class Log:
     path: Path
     entries = List[Entry]
 
-    def __init__(self, name: str):
+    def __init__(self, name: str = ''):
         pass
 
     def add_entry(self, *args, **kwargs) -> Self:
