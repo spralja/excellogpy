@@ -13,7 +13,7 @@ class Log:
     def __init__(self, name: str):
         pass
 
-    def add_entry(self, entry: Entry) -> Self:
+    def add_entry(self, *args, **kwargs) -> Self:
         """
         :param entry:
         :return: self
