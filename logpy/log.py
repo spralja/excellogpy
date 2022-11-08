@@ -13,10 +13,11 @@ class Log:
     def __init__(self, name: str = ''):
         pass
 
-    def add_entry(self, *args, **kwargs) -> Self:
+    def add_entry(self, *args, **kwargs) -> Entry:
         """
-        :param entry:
-        :return: self
+        :param args:
+        :param kwargs:
+        :return:
         """
 
     def range(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Generator:
