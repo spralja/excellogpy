@@ -10,7 +10,7 @@ class Log:
     entries = List[Entry]
 
     def __init__(self, name: str = ''):
-        pass
+        self.name = name
 
     def add_entry(self, *args, **kwargs) -> Entry:
         """
