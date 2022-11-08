@@ -10,7 +10,7 @@ class Log:
     path: Path
     entries = List[Entry]
 
-    def __init__(self, path):
+    def __init__(self, name: str):
         pass
 
     @property
