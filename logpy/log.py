@@ -1,16 +1,17 @@
 from .entry import Entry
 
-from typing import List, Optional, Generator
+from typing import Dict, Optional, Generator
 
 from datetime import datetime
 
 
 class Log:
     name: str
-    entries = List[Entry]
+    entries = Dict[datetime, Entry]
 
     def __init__(self, name: str = ''):
         self.name = name
+        self.entries = {}
 
     def add_entry(self, *args, **kwargs) -> Entry:
         """
