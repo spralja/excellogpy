@@ -1,8 +1,7 @@
 from .entry import Entry
 
-from typing import List, Self, Optional, Generator
+from typing import List, Optional, Generator
 
-from pathlib import Path
 from datetime import datetime
 
 
