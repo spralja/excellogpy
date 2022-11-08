@@ -30,55 +30,6 @@ class AddEntryTestCase(unittest.TestCase):
     def setUp(self):
         self.log = Log()
 
-    def test00(self):
-        log = Log()
-        self.assertEqual(log.add_entry(
-            datetime(2022, 11, 8, 13, 0),
-            datetime(2022, 11, 8, 14, 0),
-            'Category',
-        ), log)
-
-    def test01(self):
-        """
-        Tests adding an Entry
-        """
-
-        self.assertEqual(self.log.add_entry(entries[0]), entries[0])
-
-    def test02(self):
-        """
-        test adding an entry as args
-        """
-
-        start_time = entries[0].start_time
-        end_time = entries[0].end_time
-        category = entries[0].category
-        description = entries[0].description
-
-        entry = self.log.add_entry(start_time, end_time, category, description)
-
-        self.assertEqual(start_time, entry.start_time)
-        self.assertEqual(end_time, entry.end_time)
-        self.assertEqual(category, entry.category)
-        self.assertEqual(description, entry.description)
-
-    def test03(self):
-        """
-        tests adding an entry as args, kwargs
-        """
-
-        start_time = entries[0].start_time
-        end_time = entries[0].end_time
-        category = entries[0].category
-        description = entries[0].description
-
-        entry = self.log.add_entry(start_time, category=category, end_time=end_time, description=description)
-
-        self.assertEqual(start_time, entry.start_time)
-        self.assertEqual(end_time, entry.end_time)
-        self.assertEqual(category, entry.category)
-        self.assertEqual(description, entry.description)
-
     def test04(self):
         """
         Conflict test: no conflict
@@ -131,6 +82,14 @@ class AddEntryTestCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.log.add_entry(entries[0])
             self.log.add_entry(entries[5])
+
+    def test10(self):
+        """
+        Wrong Arguments
+        """
+
+        with self.assertRaises(TypeError):
+            self.log.add_entry(entries[0], datetime(2022, 11, 8, 16, 30), category='Category')
 
 
 class RangeTestCase(unittest.TestCase):
