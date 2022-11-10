@@ -40,16 +40,16 @@ class AddEntryTestCase(unittest.TestCase):
 
     def test05(self):
         """
-        Conflict test
+        Conflict test: A C D B
         """
 
         with self.assertRaises(ValueError):
             self.log.add_entry(entries[0])
-            self.log.add_entry(entries[1])
+            self.log.add_entry(entries[2])
 
     def test06(self):
         """
-        Conflict test
+        Conflict test: C A B D
         """
 
         with self.assertRaises(ValueError):
@@ -58,7 +58,7 @@ class AddEntryTestCase(unittest.TestCase):
 
     def test07(self):
         """
-        Conflict test
+        Conflict test: C A D B
         """
 
         with self.assertRaises(ValueError):
@@ -67,7 +67,7 @@ class AddEntryTestCase(unittest.TestCase):
 
     def test08(self):
         """
-        Conflict test
+        Conflict test: A C B D
         """
 
         with self.assertRaises(ValueError):
