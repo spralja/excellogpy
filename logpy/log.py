@@ -15,7 +15,7 @@ class Log:
 
     def add_entry(self, entry: Entry) -> Entry:
         """
-        Add an Entry object, or pass arguments that are used to create an Entry object
+        Add an Entry object to the log
         :param entry: Entry
         :return: Entry
         """
@@ -30,8 +30,7 @@ class Log:
 
     def range(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Generator:
         """
-        Returns a range object with entries that end after the start time and begin before the end time in chronological
-        order
+        Returns a range object with entries that end after the start time and begin before the end time
         :param start_time:
         :param end_time:
         :return:
