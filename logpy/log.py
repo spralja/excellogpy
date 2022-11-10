@@ -16,9 +16,8 @@ class Log:
     def add_entry(self, entry: Entry) -> Entry:
         """
         Add an Entry object, or pass arguments that are used to create an Entry object
-        :param args:
-        :param kwargs:
-        :return:
+        :param entry: Entry
+        :return: Entry
         """
 
     def range(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Generator:
