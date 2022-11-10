@@ -13,7 +13,7 @@ class Log:
         self.name = name
         self.entries = {}
 
-    def add_entry(self, *args, **kwargs) -> Entry:
+    def add_entry(self, entry: Entry) -> Entry:
         """
         Add an Entry object, or pass arguments that are used to create an Entry object
         :param args:
