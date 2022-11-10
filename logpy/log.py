@@ -7,7 +7,7 @@ from datetime import datetime
 
 class Log:
     name: str
-    entries = Dict[datetime, Entry]
+    entries: Dict[datetime, Entry]
 
     def __init__(self, name: str = ''):
         self.name = name
