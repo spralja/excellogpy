@@ -35,5 +35,11 @@ class Entry:
         return self.category, self.duration
 
     def intersection(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Optional['Self']:
-        return None
+        if start_time: start_time = max(start_time, self.start_time)
+        else: start_time = self.start_time
 
+        if end_time: end_time = min(end_time, self.end_time)
+        else: end_time = self.end_time
+
+        try: return Entry(start_time, end_time, self.category, self.description)
+        except ValueError: pass
