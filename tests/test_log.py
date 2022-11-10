@@ -5,12 +5,12 @@ from logpy.entry import Entry
 from datetime import datetime
 
 entries = [
-    (datetime(2022, 11, 8, 13), datetime(2022, 11, 8, 14), 'Category'),
-    (datetime(2022, 11, 8, 14), datetime(2022, 11, 8, 15), 'Category'),
-    (datetime(2022, 11, 8, 13, 15), datetime(2022, 11, 8, 13, 45), 'Category'),
-    (datetime(2022, 11, 8, 12), datetime(2022, 11, 8, 14), 'Category'),
-    (datetime(2022, 11, 8, 12, 30), datetime(2022, 11, 8, 13, 30), 'Category'),
-    (datetime(2022, 11, 8, 13, 30), datetime(2022, 11, 8, 14, 30), 'Category'),
+    Entry(datetime(2022, 11, 8, 13), datetime(2022, 11, 8, 14), 'Category'),
+    Entry(datetime(2022, 11, 8, 14), datetime(2022, 11, 8, 15), 'Category'),
+    Entry(datetime(2022, 11, 8, 13, 15), datetime(2022, 11, 8, 13, 45), 'Category'),
+    Entry(datetime(2022, 11, 8, 12), datetime(2022, 11, 8, 14), 'Category'),
+    Entry(datetime(2022, 11, 8, 12, 30), datetime(2022, 11, 8, 13, 30), 'Category'),
+    Entry(datetime(2022, 11, 8, 13, 30), datetime(2022, 11, 8, 14, 30), 'Category'),
 ]
 
 
@@ -35,8 +35,8 @@ class AddEntryTestCase(unittest.TestCase):
         Conflict test: no conflict
         """
 
-        self.log.add_entry(*entries[0])
-        self.log.add_entry(*entries[1])
+        self.log.add_entry(entries[0])
+        self.log.add_entry(entries[1])
 
     def test05(self):
         """
@@ -44,8 +44,8 @@ class AddEntryTestCase(unittest.TestCase):
         """
 
         with self.assertRaises(ValueError):
-            self.log.add_entry(*entries[0])
-            self.log.add_entry(*entries[1])
+            self.log.add_entry(entries[0])
+            self.log.add_entry(entries[1])
 
     def test06(self):
         """
@@ -53,8 +53,8 @@ class AddEntryTestCase(unittest.TestCase):
         """
 
         with self.assertRaises(ValueError):
-            self.log.add_entry(*entries[0])
-            self.log.add_entry(*entries[2])
+            self.log.add_entry(entries[0])
+            self.log.add_entry(entries[2])
 
     def test07(self):
         """
@@ -62,8 +62,8 @@ class AddEntryTestCase(unittest.TestCase):
         """
 
         with self.assertRaises(ValueError):
-            self.log.add_entry(*entries[0])
-            self.log.add_entry(*entries[3])
+            self.log.add_entry(entries[0])
+            self.log.add_entry(entries[3])
 
     def test08(self):
         """
@@ -71,8 +71,8 @@ class AddEntryTestCase(unittest.TestCase):
         """
 
         with self.assertRaises(ValueError):
-            self.log.add_entry(*entries[0])
-            self.log.add_entry(*entries[4])
+            self.log.add_entry(entries[0])
+            self.log.add_entry(entries[4])
 
     def test09(self):
         """
@@ -80,8 +80,11 @@ class AddEntryTestCase(unittest.TestCase):
         """
 
         with self.assertRaises(ValueError):
-            self.log.add_entry(*entries[0])
-            self.log.add_entry(*entries[5])
+            self.log.add_entry(entries[0])
+            self.log.add_entry(entries[5])
+
+    def test10(self):
+        self.assertEqual(self.log.add_entry(entries[0]), entries[0])
 
 
 class RangeTestCase(unittest.TestCase):
