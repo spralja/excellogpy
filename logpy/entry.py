@@ -43,3 +43,6 @@ class Entry:
 
         try: return Entry(start_time, end_time, self.category, self.description)
         except ValueError: pass
+
+    def to_period(self) -> Tuple[datetime, datetime]:
+        return self.start_time, self.end_time
