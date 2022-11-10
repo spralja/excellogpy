@@ -74,11 +74,11 @@ class IntersectionTestCase(unittest.TestCase):
 
     def test02(self):
         """A C D B"""
-        self.assertEqual(entry.intersection(*periods[2]), Entry(periods[2][0], periods[2][0], entry.category))
+        self.assertEqual(entry.intersection(*periods[2]), Entry(periods[2][0], periods[2][1], entry.category))
 
     def test03(self):
         """C A B D"""
-        self.assertEqual(entry.intersection(*periods[3]), Entry)
+        self.assertEqual(entry.intersection(*periods[3]), entry)
 
     def test04(self):
         """C A D B"""
