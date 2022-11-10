@@ -1,17 +1,17 @@
 from .entry import Entry
 
-from typing import Dict, Optional, Generator
+from typing import Optional, Generator, List
 
 from datetime import datetime
 
 
 class Log:
     name: str
-    entries: Dict[datetime, Entry]
+    entries: List[Entry]
 
     def __init__(self, name: str = ''):
         self.name = name
-        self.entries = {}
+        self.entries = []
 
     def add_entry(self, entry: Entry) -> Entry:
         """
@@ -19,6 +19,14 @@ class Log:
         :param entry: Entry
         :return: Entry
         """
+
+        for ENTRY in self.entries:
+            if ENTRY.intersection(*entry.to_period()):
+                raise ValueError(f'Entry conflict:\nA: {ENTRY}\nB: {entry}')
+
+        self.entries.append(entry)
+
+        return entry
 
     def range(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Generator:
         """
