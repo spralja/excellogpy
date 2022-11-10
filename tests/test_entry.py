@@ -92,4 +92,4 @@ class IntersectionTestCase(unittest.TestCase):
 class ToPeriodTestCase(unittest.TestCase):
 
     def test00(self):
-        self.assertEqual(entry.to_period(), datetime(2022, 11, 8, 13), datetime(2022, 11, 8, 14))
+        self.assertEqual(entry.to_period(), (datetime(2022, 11, 8, 13), datetime(2022, 11, 8, 14)))
