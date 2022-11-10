@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Tuple, Optional#, Self
+from typing import Tuple, Optional, Self
 
 
 @dataclass(frozen=True, order=True)
@@ -34,7 +34,15 @@ class Entry:
 
         return self.category, self.duration
 
-    def intersection(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Optional['Self']:
+    def intersection(self, start_time: Optional[datetime] = None,
+                     end_time: Optional[datetime] = None) -> Optional[Self]:
+        """
+        Returns an intersection of the entry's (start_time, end_time) and the (start_time, end_time)
+        :param start_time: Optional[datetime]
+        :param end_time: Optional[datetime]
+        :return: Optional[Self]
+        """
+
         if start_time: start_time = max(start_time, self.start_time)
         else: start_time = self.start_time
 
@@ -45,4 +53,8 @@ class Entry:
         except ValueError: pass
 
     def to_period(self) -> Tuple[datetime, datetime]:
+        """
+        Returns (start_time, end_time)
+        :return: Tuple[datetime, datetime]
+        """
         return self.start_time, self.end_time
