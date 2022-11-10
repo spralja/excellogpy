@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Tuple
+from typing import Tuple, Optional#, Self
 
 
 @dataclass(frozen=True, order=True)
@@ -33,3 +33,7 @@ class Entry:
         """
 
         return self.category, self.duration
+
+    def intersection(self, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None) -> Optional['Self']:
+        return None
+
