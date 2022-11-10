@@ -88,4 +88,54 @@ class AddEntryTestCase(unittest.TestCase):
 
 
 class RangeTestCase(unittest.TestCase):
-    pass
+    log = Log()
+    log.add_entry(Entry(datetime(2022, 11, 10, 10), datetime(2022, 11, 10, 11), 'Category'))
+    log.add_entry(Entry(datetime(2022, 11, 10, 12), datetime(2022, 11, 10, 13), 'Category'))
+    log.add_entry(Entry(datetime(2022, 11, 10, 14), datetime(2022, 11, 10, 15), 'Category'))
+
+    periods = [
+        (),
+        (datetime(2022, 11, 10, 10),),
+        {'end_time': datetime(2022, 11, 10, 15)},
+        (datetime(2022, 11, 10, 10), datetime(2022, 11, 10, 15)),
+        (datetime(2022, 11, 10, 10, 30), datetime(2022, 11, 10, 14, 30)),
+    ]
+
+    ranges = [
+        (
+            Entry(datetime(2022, 11, 10, 10), datetime(2022, 11, 10, 11), 'Category'),
+            Entry(datetime(2022, 11, 10, 12), datetime(2022, 11, 10, 13), 'Category'),
+            Entry(datetime(2022, 11, 10, 14), datetime(2022, 11, 10, 15), 'Category')
+        ), (
+            Entry(datetime(2022, 11, 10, 10), datetime(2022, 11, 10, 11), 'Category'),
+            Entry(datetime(2022, 11, 10, 12), datetime(2022, 11, 10, 13), 'Category'),
+            Entry(datetime(2022, 11, 10, 14), datetime(2022, 11, 10, 15), 'Category')
+        ), (
+            Entry(datetime(2022, 11, 10, 10), datetime(2022, 11, 10, 11), 'Category'),
+            Entry(datetime(2022, 11, 10, 12), datetime(2022, 11, 10, 13), 'Category'),
+            Entry(datetime(2022, 11, 10, 14), datetime(2022, 11, 10, 15), 'Category')
+        ), (
+            Entry(datetime(2022, 11, 10, 10), datetime(2022, 11, 10, 11), 'Category'),
+            Entry(datetime(2022, 11, 10, 12), datetime(2022, 11, 10, 13), 'Category'),
+            Entry(datetime(2022, 11, 10, 14), datetime(2022, 11, 10, 15), 'Category')
+        ), (
+            Entry(datetime(2022, 11, 10, 10, 30), datetime(2022, 11, 10, 11), 'Category'),
+            Entry(datetime(2022, 11, 10, 12), datetime(2022, 11, 10, 13), 'Category'),
+            Entry(datetime(2022, 11, 10, 14), datetime(2022, 11, 10, 14, 30), 'Category')
+        )
+    ]
+
+    def test00(self):
+        self.assertEqual(tuple(self.log.range(*self.periods[0])), self.ranges[0])
+
+    def test01(self):
+        self.assertEqual(tuple(self.log.range(*self.periods[1])), self.ranges[1])
+
+    def test02(self):
+        self.assertEqual(tuple(self.log.range(**self.periods[2])), self.ranges[2])
+
+    def test03(self):
+        self.assertEqual(tuple(self.log.range(*self.periods[3])), self.ranges[3])
+
+    def test04(self):
+        self.assertEqual(tuple(self.log.range(*self.periods[4])), self.ranges[4])
