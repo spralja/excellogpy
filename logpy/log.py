@@ -36,3 +36,8 @@ class Log:
         :param end_time:
         :return:
         """
+
+        for ENTRY in self.entries:
+            entry = ENTRY.intersection(start_time=start_time, end_time=end_time)
+            if entry:
+                yield entry
