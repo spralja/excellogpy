@@ -1,6 +1,6 @@
 __version__ = '0.0.2'
 
-from .model import Entry, Log
+from logpy.model import Entry, Log
 
 from pathlib import Path
 from typing import Union
