@@ -1,13 +1,12 @@
 __version__ = '0.0.2'
 
-from .log import Log
-from .entry import Entry
+from logpy.model import Entry, Log
 
 from pathlib import Path
 from typing import Union
 from datetime import datetime, timedelta
 
-from openpyxl import load_workbook
+from openpyxl import load_workbook, Workbook
 
 
 DAYS = {
@@ -39,7 +38,7 @@ def load_log(path: Union[Path, str]) -> Log:
                 try: sheet = work_book[day]
                 except KeyError: continue
 
-                for row in sheet.iter_rows(3):
+                for row in sheet.iter_rows(2):
                     row = [cell.value for cell in row]
                     if not row[0]: break
 
@@ -66,3 +65,50 @@ def load_log(path: Union[Path, str]) -> Log:
             work_book.close()
 
     return log
+
+
+def export_log(log: Log, path: Union[Path, str]):
+    """
+    Exports the log in the give path (does not support entries which span multiple days)
+    :param log:
+    :param path:
+    :return:
+    """
+    path = Path(path)
+
+    if path.is_dir() or path.is_file():
+        raise FileExistsError(f'Directory {path.name} already exists.')
+
+    path.mkdir()
+
+    entries = list(log.range())
+    entries.sort()
+    wb = None
+    curr = None
+    for entry in entries:
+        year = str(entry.start_time.year)
+        week = str(entry.start_time.isocalendar().week)
+        day = entry.start_time.strftime('%A')
+        curr = path / year / f'w{week}.xlsx'
+        print(curr)
+        if not (path / year).is_dir():
+            (path / year).mkdir()
+
+        if not curr.is_file():
+            if wb is not None:
+                wb.save(curr)
+            wb = Workbook()
+            del wb['Sheet']
+
+        try: wb[day]
+        except KeyError:
+            wb.create_sheet(day)
+            wb[day].append([])
+            wb[day].append([])
+
+        row = [entry.start_time.strftime('%H:%M'), entry.end_time.strftime('%H:%M'), entry.category, entry.description]
+
+        print(wb)
+        wb[day].append(row)
+
+    wb.save(curr)
