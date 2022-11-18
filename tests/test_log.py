@@ -1,6 +1,6 @@
 import unittest
-from logpy.log import Log
-from logpy.entry import Entry
+from model.log import Log
+from model.entry import Entry
 
 from datetime import datetime
 

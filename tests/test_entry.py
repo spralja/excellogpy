@@ -1,5 +1,5 @@
 import unittest
-from logpy.entry import Entry
+from model.entry import Entry
 from datetime import datetime, timedelta
 
 start_time = datetime(2022, 11, 7, 17)
