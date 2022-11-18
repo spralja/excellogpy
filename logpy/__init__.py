@@ -1,4 +1,4 @@
-__version__ = '0.0.2'
+__version__ = '0.1.0'
 
 from logpy.model import Entry, Log
 
@@ -38,7 +38,7 @@ def load_log(path: Union[Path, str]) -> Log:
                 try: sheet = work_book[day]
                 except KeyError: continue
 
-                for row in sheet.iter_rows(2):
+                for row in sheet.iter_rows(3):
                     row = [cell.value for cell in row]
                     if not row[0]: break
 
@@ -83,7 +83,7 @@ def export_log(log: Log, path: Union[Path, str]):
 
     entries = list(log.range())
     entries.sort()
-    wb = None
+    wb: Workbook = None
     curr = None
     for entry in entries:
         year = str(entry.start_time.year)
@@ -106,9 +106,16 @@ def export_log(log: Log, path: Union[Path, str]):
             wb[day].append([])
             wb[day].append([])
 
-        row = [entry.start_time.strftime('%H:%M'), entry.end_time.strftime('%H:%M'), entry.category, entry.description]
+        row = [
+            entry.start_time,
+            entry.end_time,
+            entry.category,
+            entry.description
+        ]
 
         print(wb)
         wb[day].append(row)
+        wb[day][f'A{wb[day].max_row}'].number_format = 'h:mm'
+        wb[day][f'B{wb[day].max_row}'].number_format = 'h:mm'
 
     wb.save(curr)
